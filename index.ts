@@ -12,5 +12,5 @@ app.use(json());
 
 
 app.listen(3001, ()=>{
-    console.log('Nasłuchiwanie na http://192.168.1.197:3001')
+    console.log('Nasłuchiwanie na http://localhost:3001')
 })
