@@ -1,1 +1,1 @@
-export * from './coctail'
+export * from './product'
