@@ -3,6 +3,7 @@ import {v4 as uuid} from "uuid"
 
 import {ProductEntity} from "../types";
 import {pool} from "../utils/db";
+import {ValidateErrors} from "../utils/errors";
 
 type ProductRecordResults = [ProductEntity[], FieldPacket[]];
 export class ProductRecord implements ProductEntity {
@@ -11,9 +12,15 @@ export class ProductRecord implements ProductEntity {
     public quantity: number
 
     constructor(obj: ProductEntity) {
+        if (!obj.name || obj.name.length < 3 || obj.name.length > 60){
+            throw new ValidateErrors('Nazwa produktu musi mieć minimum 3 znaki i nie przekraczać 60 znaków')
+        }
+        if(!obj.quantity || obj.quantity < 0){
+            throw new ValidateErrors('Ilość produktu musi mieć dodatnią wartość')
+        }
         this.id = obj.id;
         this.name = obj.name;
-        this.name = obj.name;
+        this.quantity = obj.quantity;
     }
 
     static async listAll(): Promise<ProductRecord[]> {
