@@ -11,3 +11,9 @@ productRouter
         })
         console.log(productList)
     })
+    .post('/', async (req: Request, res: Response) => {
+
+        const newProduct = new ProductRecord(req.body);
+        await newProduct.insert();
+        res.json(newProduct);
+    })
