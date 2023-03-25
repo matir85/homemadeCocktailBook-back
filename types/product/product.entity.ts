@@ -1,5 +1,5 @@
 export interface ProductEntity {
-    id?: string
+    id?: string;
     name: string;
     quantity: number;
 }
