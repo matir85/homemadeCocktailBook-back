@@ -27,7 +27,7 @@ export class ProductRecord implements ProductEntity {
         const [resault] = await pool.execute('SELECT * FROM `product`') as ProductRecordResults;
         return resault.map((obj) => new ProductRecord(obj));
     }
-    static async getOne(id: string): Promise<ProductRecord> | null {
+    static async getOne(id: string): Promise<ProductRecord | null> {
         const [resault] = await pool.execute('SELECT * FROM `product` WHERE `id` = :id', {
             id,
         }) as ProductRecordResults;

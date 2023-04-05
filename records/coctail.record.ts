@@ -2,6 +2,7 @@ import {CoctailEntity} from "../types";
 import {ValidateErrors} from "../utils/errors";
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
+import {v4 as uuid} from "uuid";
 
 type CoctailRecordResults = [CoctailEntity[], FieldPacket[]];
 export class CoctailRecord implements CoctailEntity {
@@ -23,5 +24,19 @@ public description: string
     static async listAll(): Promise<CoctailRecord[]> {
         const [resault] = await pool.execute('SELECT * FROM `coctail`') as CoctailRecordResults;
         return resault.map((obj) => new CoctailRecord(obj));
+    }
+
+    async insert() {
+        if (!this.id) {
+            this.id = uuid()
+        }else {
+            throw new Error('Koktail o takim id nie istnieje')
+        }
+        await pool.execute('INSERT INTO `coctail` VALUE(:id, :name, :description)', {
+            id: this.id,
+            name: this.name,
+            quantity: this.description,
+        });
+        return this.id
     }
 }
