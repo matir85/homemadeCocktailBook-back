@@ -32,10 +32,10 @@ public description: string
         }else {
             throw new Error('Koktail o takim id nie istnieje')
         }
-        await pool.execute('INSERT INTO `coctail` VALUE(:id, :name, :description)', {
+        await pool.execute('INSERT INTO `coctail` (`id`, `name`, `description`) VALUE(:id, :name, :description)', {
             id: this.id,
             name: this.name,
-            quantity: this.description,
+            description: this.description,
         });
         return this.id
     }
