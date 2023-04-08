@@ -1,11 +1,11 @@
-import {CocktailRecipeEntity} from "../types/coctail_product/cocktail_recipe_entity";
+import {CocktailRecipeEntity} from "../types";
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
 import {v4 as uuid} from "uuid";
 
 
 type CocktailRecipeRecordResults = [CocktailRecipeEntity[], FieldPacket[]];
-class CocktailRecipeRecord implements CocktailRecipeEntity {
+export class CocktailRecipeRecord implements CocktailRecipeEntity {
     public id?: string;
     public idCoctail: string;
     public idProduct: string;
@@ -30,13 +30,14 @@ class CocktailRecipeRecord implements CocktailRecipeEntity {
         return resault.length === 0 ? null : new CocktailRecipeRecord(resault[0]);
     }
 
+
     async insert() {
         if (!this.id) {
             this.id = uuid()
         }else {
             throw new Error('Produkt o takim id nie istnieje')
         }
-        await pool.execute('INSERT INTO `cocktail_recipe` VALUE(:id, :idCoctail, :idProduct, :quantity)', {
+        await pool.execute('INSERT INTO `coctail_recipe` (`id`, `idCoctail`, `idProduct`, `quantity`) VALUE(:id, :idCoctail, :idProduct, :quantity)', {
             id: this.id,
             idCoctail: this.idCoctail,
             idProduct: this.idProduct,
