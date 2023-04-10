@@ -1,10 +1,10 @@
-import {CocktailRecipeEntity} from "../types";
+import {CocktailRecipeEntity, GetCoctailRecipe} from "../types";
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
 import {v4 as uuid} from "uuid";
 
 
-type CocktailRecipeRecordResults = [CocktailRecipeEntity[], FieldPacket[]];
+type CocktailRecipeRecordResults = [GetCoctailRecipe[], FieldPacket[]];
 export class CocktailRecipeRecord implements CocktailRecipeEntity {
     public id?: string;
     public idCoctail: string;
@@ -18,18 +18,14 @@ export class CocktailRecipeRecord implements CocktailRecipeEntity {
         this.quantity = obj.quantity;
     }
 
-    static async listAll(): Promise<CocktailRecipeRecord[]> {
-        const [resault] = await pool.execute('SELECT * FROM `cocktail_recipe`') as CocktailRecipeRecordResults;
-        return resault.map((obj) => new CocktailRecipeRecord(obj));
-    }
 
-    static async getOne(id: string): Promise<CocktailRecipeRecord | null> {
-        const [resault] = await pool.execute('SELECT * FROM `cocktail_recipe` WHERE `id` = :id', {
+    static async getOne(id: string): Promise<GetCoctailRecipe[]> {
+        const resault = await pool.execute('SELECT `product`.`name`, `coctail_recipe`.`quantity`FROM  `product` INNER JOIN `coctail_recipe` ON `product`.`id` = `coctail_recipe`.`idProduct`  WHERE `coctail_recipe`.`idCoctail` = :id', {
             id,
         }) as CocktailRecipeRecordResults;
-        return resault.length === 0 ? null : new CocktailRecipeRecord(resault[0]);
+        console.log(resault[0])
+        return  resault[0]
     }
-
 
     async insert() {
         if (!this.id) {
