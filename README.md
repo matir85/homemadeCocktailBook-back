@@ -1,5 +1,5 @@
 # Projekt na zaliczenie
-<p align="center">
+<p>
   <a href="https://www.megak.pl/" target="_blank" rel="noreferrer"> <img src="https://github.com/Keszua/megak-game-over-front/blob/main/public/images/megak.png/" alt="MegaK" height="80"/>
   </a>
 </p>
@@ -12,6 +12,8 @@ To jest **back end** napisany w ***node.js*** (framework *ExpressJS*)
 
 Do prawidłowego działania, wymagany jest **front end** dostępny pod [tym adresem](https://github.com/matir85/homemadeCoctailBook-front/tree/develop)
 
+<hr/>
+
 ## Opis projektu
 Przykład aploikacji do zarządzania domowym barkiem.
 - obsługa bazy danych mySQL
@@ -20,6 +22,7 @@ Przykład aploikacji do zarządzania domowym barkiem.
     - tworzenie przepisów na koktajle i zapiswyanie ich w relacyjnej bazie danych
 -wyświetlanie dotowych koktaili na kartach z wykorzystaniem material-ui
 
+<hr/>
 
 ## Zastosowane języki i technologie
 <p align="center" float="top">
@@ -42,7 +45,7 @@ Przykład aploikacji do zarządzania domowym barkiem.
   </a>
 </p>
 
-
+<hr/>
 
 ## Zrealizowane zadania
 
@@ -56,10 +59,21 @@ Przykład aploikacji do zarządzania domowym barkiem.
 - [x] Dodanie endpointów produktów i koktaili
     - [x] Lista produktów
     - [x] Dodawanie produktu do bazy danych
+    - [x] Usunięcie produktu z bazy danych
     - [x] Lista koktajli
     - [x] Tworzenie koktajli 
     - [x] Dodawanie stworzonego koktailu
+- [ ] Dodanie opcji usuwania koktajlu
+- [ ] Dodanie opcji przygotuj koktajl
+  - [ ] Odjęcie wymaganej ilości mililitrów składnika od dostępnej w bazie danych produktu
+  - [ ] W przypadku braku wymaganej ilości składnika podświetlenie go na czerwono i wyłączenie możliwości wciśnięcia przycisku przygotuj koktajl
+- [ ] Obliczanie pozostałej ilości składników w bazie danych
+- [ ] Wyłączenie możliwości skorzystania ze składnika (produktu) w przypadku, gdy jego ilośc jest równa 0
+- [ ] Dodanie możliwości edecji składników (produktów) i koktajli
+- [ ] Refaktoryzacja i optymalizacja kodu
+- [ ] Stworzenie dema na zewnętrznym serwerze
 
+<hr/>
 
 # Uruchomienie
 
@@ -101,3 +115,12 @@ Stworzenie wersji produkcyjnej
 ```bash
 npm run start:prod
 ```
+
+<hr/>
+
+## Kontakt
+
+
+#### mail: [Gmail](mailto:matir85@gmail.com)
+
+<hr/>
