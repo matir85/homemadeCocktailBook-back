@@ -20,7 +20,7 @@ productRouter
     .delete('/:productId', async (req, res) => {
         const product = await ProductRecord.getOne(req.params.productId);
         if (!product) {
-            throw new ValidateErrors('Taki prezent nie istnieje')
+            throw new ValidateErrors('Taki produkt nie istnieje')
         }
         console.log(`Produkt do usunięcia: ${product}`)
         await product.delete()

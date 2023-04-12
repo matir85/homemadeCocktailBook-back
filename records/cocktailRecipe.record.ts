@@ -23,7 +23,6 @@ export class CocktailRecipeRecord implements CocktailRecipeEntity {
         const resault = await pool.execute('SELECT `product`.`name`, `coctail_recipe`.`quantity`FROM  `product` INNER JOIN `coctail_recipe` ON `product`.`id` = `coctail_recipe`.`idProduct`  WHERE `coctail_recipe`.`idCoctail` = :id', {
             id,
         }) as CocktailRecipeRecordResults;
-        console.log(resault[0])
         return  resault[0]
     }
 
